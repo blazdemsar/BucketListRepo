@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manage Lists</title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
+      <link rel="stylesheet" href="..\static\css\styles.css">
+      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <nav class="blue-grey lighten-2">
+        <div class="nav-wrapper ">
+        <a href="#!" class="brand-logo center">Bucket List</a>
+        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+        <ul class="right hide-on-med-and-down">
+            <li class="username">{{session['user']['username']}}</li>
+            <li class="logout_link"><a href={{ url_for('logout')}}>Logout</a></li>
+        </ul>
+        </div>
+    </nav>
+    <!--End of navbar-->
+    <div class="container">
+       <ul class="collection with-header bucket_list">
+            <li class="collection-header blue-grey-text darken-3"><h5>My Bucket Lists</h5></li>
+
+            {% if bucketlists %}
+            {% for key in bucketlists.keys() %}
+            <li class="collection-item">
+                
+                <div class="a_bucket_list">
+                    <a href={{ url_for('add_activity_to_bucketlist', name=key) }} class="blue-grey-text darken-3 titulary">{{ key }}</a>
+                    <a class="waves-effect waves-light btn blue-grey lighten-1 btn_update_bckt" href={{url_for('update_bucketlist', name=key, description=bucketlists[key]['description'])}}>Update</a>
+                    <a class="waves-effect waves-light blue-grey lighten-1 btn btn_delete_bckt"
+                    href= {{ url_for('delete_bucketlist', name=key) }}>Delete</a>
+                </div>           
+            </li>
+            {% endfor %}
+            {% endif %}
+
+
+       </ul>
+    <div id="add_bckt_list_div">
+        <a id="btn_add_bckt" href="#add_bckt_lst_div"
+        class="btn-floating btn-large waves-effect waves-light blue-grey lighten-1 center">
+            <i class="material-icons">add</i>
+        </a>
+        <h6 class="blue-grey-text darken-3">New Bucket List</h6>
+    </div>
+
+    <!-- Add Bucket List form -->
+    <!-- Modal Trigger -->
+
+    <div id="add_bckt_lst_div" class="modal">
+    <div class="modal-content">
+        <form action='/add_bucketlist' method="POST">
+        <h4>Add Bucket List</h4>
+        Title <input type="text" name="title" required><br>
+        Description <input type="text" name="description" required><br>
+
+        <button class="btn waves-effect waves-light" type="submit" name="action">Add
+        </button>
+
+        </form> 
+    </div>
+</div>
+
+    </div>
+    </div>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+    <script src="..\static\js\scripts.js"></script>
+</body>
+</html>

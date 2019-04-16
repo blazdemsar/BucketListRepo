@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Bucket List</title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
+      <link rel="stylesheet" href="..\static\css\styles.css">
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <nav class="blue-grey lighten-2">
+    <div class="nav-wrapper ">
+      
+      <a href="#!" class="brand-logo center">Bucket List</a>
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li class="username">{{session['user']['username']}}</li>
+        <li><a href={{url_for('logout')}} class="logout_link">Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+        
+    <div class="container">
+    <!--This the content container-->
+    <div class="back_to_addlists row"><a class="waves-effect waves-light blue-grey darken-2 btn" href="/back_to_bucketlists">Bucketlists</a></div>
+    <div class="row"> <h5>{{request.args.get('name')}}</h5>
+    </div>
+    
+        <!--To post user checkbox, update and delete actions-->
+        <ul class="collapsible" data-collapsible="accordion">
+        <!--List of Pending, In Progress and Done Categories-->
+         <li>
+             <!--Pending Category-->
+            <div class="collapsible-header active"><i class="material-icons">label_outline</i>Pending</div>
+            <div class="collapsible-body">
+                {% if activities %}
+                {% for activity in activities%} 
+                <!--Activity card-->              
+                <div class="card blue-grey darken-1">
+                    <div class="card-content white-text">
+                    <span class="card-title" style="font-size: 0.9em"> {{ activity['title'] }} <input type="checkbox" class="filled-in" checked="checked"/>
+                    <label for="filled-in-box" class="checkbox_done">Start</label></span>
+                    <p> {{ activity['description'] }}</p>
+                    </div>
+                    <div class="card-action">
+                    <a class="waves-effect waves-light btn" style="font-size: 0.9em"
+                       href={{url_for('update_activity', name=request.args.get('name'), title=activity['title'], description=activity['description'])}}>Edit</a>
+                    <a class="btn waves-effect waves-teal btn_delete" style="font-size: 0.9em"
+                    href= {{url_for('delete_activity', name=request.args.get('name'), title=activity['title'])}}>Delete</a>
+                    </div>
+                </div>
+                {% endfor %}
+                {% endif %}
+
+                
+            </div>
+         </li>
+         <li>
+             <!--In Progress Category-->
+            <div class="collapsible-header"><i class="material-icons">label_outline</i>In Progress</div>
+            <div class="collapsible-body">
+            </div>
+         </li>
+         <li>
+             <!--Completed Category-->
+            <div class="collapsible-header"><i class="material-icons">label_outline</i>Completed</div>
+            <div class="collapsible-body">
+            </div>
+         </li>
+      </ul>
+    
+    <div class="add_btn_div row"><a class="waves-effect waves-light  blue-grey darken-2 btn" id="btn_add_activity" href="#frm_add_activity">
+        <i class="material-icons left">add</i>Add Activity
+    </a></div>
+
+    <!-- Add Activity List form -->
+    <div id="frm_add_activity" class="modal">
+    <div class="modal-content">
+      <form action= "/add_activity?name={{request.args.get('name')}}" method="POST">
+        <h4>Add Activity</h4>
+        Title <input type="text" name="title" required><br>
+        Description <input type="text" name="description" required><br>
+
+        <button class="btn waves-effect waves-light" type="submit" name="action">Add
+        </button>
+
+        <a class="waves-effect waves-light btn">Abort</a>
+      </form> 
+    </div>
+    </div>
+
+    <!-- End of add Activity List form -->
+
+    <!-- Update Activity form -->
+<!-- Modal Trigger -->
+
+        <div id="updt_act_div" class="modal">
+            <div class="modal-content">
+            <form action="" method="get">
+                <h4>Update Activity</h4>
+                Title <input type="text" name="title"><br>
+                Description <input type="text" name="description"><br>
+
+                <button class="btn waves-effect waves-light" type="submit" name="action">Save
+                </button>
+
+                <a class="waves-effect waves-light btn">Abort</a>
+
+            </form> 
+            </div>
+        </div>
+
+        <!-- Delete Activity form -->
+    <div id="frm_del_activity" class="modal">
+    <div class="modal-content">
+      <form action="" method="get">
+        <h4>Delete Activity</h4>
+        <button class="btn waves-effect waves-light" type="submit" name="action">Delete
+        </button>
+      </form> 
+    </div>
+    </div>
+
+    <!-- End of Delete Activity List form -->
+
+
+    </div>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+    <script src="..\static\js\scripts.js"></script>
+</body>
+</html>

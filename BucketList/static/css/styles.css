@@ -1,0 +1,47 @@
+.signup {
+  font-size: 1.2em;
+  text-align: center; }
+
+.center-btn {
+  text-align: center; }
+
+.tagline {
+  text-align: center;
+  font-size: 1.2em;
+  padding-top: 20px;
+  margin-bottom: 10px; }
+
+.btn_update_bckt, .btn_delete_bckt {
+  float: right;
+  height: 24px;
+  line-height: 24px;
+  padding: 0 0.5rem; }
+
+.btn_update_bckt {
+  margin-left: 10px; }
+
+.username {
+  margin-right: 8px; }
+
+.logout_link {
+  margin-right: 10px; }
+
+.checkbox_done {
+  color: aqua; }
+
+.add_btn_div {
+  margin-bottom: 20px; }
+
+#activ_desc {
+  font-size: 0.7em; }
+
+#frm_updt_act {
+  padding: 20px; }
+
+.back_to_bucketlists {
+  margin: 20px; }
+
+#return_2_addlists {
+  color: white; }
+
+/*# sourceMappingURL=styles.css.map */

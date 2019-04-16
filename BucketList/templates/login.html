@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
+   <link rel="stylesheet" href="..\static\css\styles.css">
+</head>
+<body>
+  <!--Navigation-->
+  <nav class=" blue-grey lighten-2">
+    <div class="nav-wrapper">
+    <span class="brand-logo center">Bucket List</span>
+    </div>
+  </nav>
+
+  <!--End of navigation-->
+  <div class="container blue-grey lighten-4" style="margin-top: 5px">
+    <div class="tagline blue-grey-text darken-3"> The best way to keep track of your dreams and goals </div>
+    <div class="row">
+      <form id="frm_login" class="card col s12 m6 offset-m3" action= {{ url_for('login') }} method="POST">
+        <h5 class="center-align blue-grey-text darken-3">Login</h5>
+        <div class="message">
+          {% if message %}
+          {{ request.args.get(message) }}
+          {% endif %}
+        </div>
+        <div class="row">
+            <div class=" input-field col s12">
+              <input id="username" type="text" class="validate" name='username' required>
+              <label for="username">Username</label>
+            </div>
+          </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="password" type="password" class="validate" name='password' required>
+            <label for="password">Password</label>
+          </div>
+        </div>
+        </div>
+        <div class="row center-btn "><button class="btn offset-m3 blue-grey lighten-1 ">Login</button>
+        </div>
+        
+      </form>
+      <div class="row col s12 signup">
+        <a class="blue-grey-text lighten-1" href={{ url_for('signup') }}>Signup</a>
+      </div>
+      
+    </div>
+  </div>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+</body>
+</html>

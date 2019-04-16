@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
+    <link rel="stylesheet" href="..\static\css\styles.css">
+</head>
+<body>
+  <nav class=" blue-grey lighten-2">
+    <div class="nav-wrapper">
+      <a href="#!" class="brand-logo center">Bucket List</a>
+    </div>
+  </nav>
+  <section></section>
+  <div class="container blue-grey lighten-4" style="margin-top: 5px">
+    <div class="row">
+      <form id="frm_signup" class="card col s12 m6 offset-m3" action={{ url_for('signup') }} method="POST">
+        <h5 class="center-align blue-grey-text darken-1">Sign Up</h5>
+        <div class="section">
+        <div class="row">
+            <div class=" input-field col s12">
+              <input id="username" name="username" type="text" class="validate" required>
+              <label for="username">Username</label>
+            </div>
+          </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="email" type="email" name="email" class="validate" required>
+            <label for="email">Email</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="password" type="password" name="password" class="validate" required>
+            <label for="password">Password</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="confirm_password" type="password" name="confirm_password" class="validate" required>
+            <label for="confirm_password">Confirm Password</label>
+          </div>
+        </div>
+        </div>
+        <div class="row center-btn"><button class="btn offset-m3 blue-grey lighten-2">Register</button>
+        </div>
+        
+      </form>
+    </div>
+  </div>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+</body>
+</html>

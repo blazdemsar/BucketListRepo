@@ -1,0 +1,16 @@
+
+CREATE DATABASE IF NOT EXISTS BucketList;
+
+CREATE TABLE IF NOT EXISTS Accounts (
+    userName VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    email VARCHAR(40)
+    PRIMARY KEY (userName)
+)  ENGINE=INNODB;
+
+CREATE TABLE IF NOT EXISTS Activity (
+ 	title VARCHAR(511) NOT NULL,
+ 	descritption VARCHAR(1000),
+    PRIMARY KEY (title),
+    FOREIGN KEY (title) REFERENCES Accounts(userName)
+)  ENGINE=INNODB;
